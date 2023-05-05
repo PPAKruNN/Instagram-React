@@ -38,10 +38,10 @@ function Usuario() {
 
     return (
         <div class="usuario">
-          <img data-test="name" onClick={changeImage} src={img} alt="User profile"/>
+          <img data-test="profile-image" onClick={changeImage} src={img} alt="User profile"/>
           <div class="texto">
             <span>
-              <strong data-test="profile-image"  >{username}</strong>
+              <strong data-test="name"  >{username}</strong>
               <ion-icon data-test="edit-name" onClick={changeUsername} name="pencil"></ion-icon>
             </span>
           </div>
