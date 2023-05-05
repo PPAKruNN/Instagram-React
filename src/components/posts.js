@@ -45,7 +45,7 @@ function Post(props) {
     }
 
     return (
-          <div className="post">
+          <div data-test="post" className="post">
             <div className="topo">
                 <div className="usuario">
                     <img src={props.img} alt="meowed"/>
@@ -59,6 +59,7 @@ function Post(props) {
             <div className="conteudo">
                 <ion-icon name="heart" class={isDoubleClick ? "animated-heart heart-animation" : "animated-heart"} ></ion-icon>
                 <img 
+                data-test="post-image"
                 onDoubleClick={() => {
                     like(true)
                     setIsDoubleClick(true)
@@ -69,19 +70,19 @@ function Post(props) {
             <div className="fundo">
                 <div className="acoes">
                     <div>
-                        <ion-icon onClick={() => like()} class={isLiked ? "liked" : "" }  name={isLiked ? "heart" : "heart-outline"}></ion-icon>
+                        <ion-icon data-test="like-post" onClick={() => like()} class={isLiked ? "liked" : "" }  name={isLiked ? "heart" : "heart-outline"}></ion-icon>
                         <ion-icon name="chatbubble-outline" ></ion-icon>
                         <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
                     <div>
-                        <ion-icon onClick={() => setIsBookmarked(!isBookmarked)} name={isBookmarked ? "bookmark" : "bookmark-outline"}></ion-icon>
+                        <ion-icon data-test="save-post" onClick={() => setIsBookmarked(!isBookmarked)} name={isBookmarked ? "bookmark" : "bookmark-outline"}></ion-icon>
                     </div>
                 </div>
 
                 <div className="curtidas">
                     <img src="assets/img/respondeai.svg" alt="respondeai"/>
                     <div className="texto">
-                        Curtido por <strong>respondeai</strong> e <strong>outras {curtidas} pessoas</strong>
+                        Curtido por <strong>respondeai</strong> e <strong>outras <span data-test="likes-number">{curtidas}</span> pessoas</strong>
                     </div>
                 </div>
             </div>
