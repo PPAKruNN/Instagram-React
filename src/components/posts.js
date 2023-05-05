@@ -24,7 +24,26 @@ export default function Posts() {
 function Post(props) {
 
     const [curtidas, setCurtidas] = useState(props.curtidas);
+    const [isLiked, setIsLiked ] = useState(false);
+    const [isBookmarked, setIsBookmarked] = useState(false);
+    const [isDoubleClick, setIsDoubleClick] = useState(false);
     // Adicione as curtidas usando esse state!!!.
+
+    function like(val) {
+        let dec;
+        setIsDoubleClick(false);
+
+        if(val === isLiked) return;
+
+        if(!val) dec = !isLiked;
+        else dec = val;
+
+        setIsLiked(dec);
+        if(dec) setCurtidas(curtidas + 1);
+        if(!dec) setCurtidas(curtidas - 1);
+
+    }
+
     return (
           <div className="post">
             <div className="topo">
@@ -38,18 +57,24 @@ function Post(props) {
             </div>
 
             <div className="conteudo">
-              <img src={props.postImg} alt="gato-telefone"/>
+                <ion-icon name="heart" class={isDoubleClick ? "animated-heart heart-animation" : "animated-heart"} ></ion-icon>
+                <img 
+                onDoubleClick={() => {
+                    like(true)
+                    setIsDoubleClick(true)
+                }}
+                src={props.postImg} alt="gato-telefone"/>
             </div>
 
             <div className="fundo">
                 <div className="acoes">
                     <div>
-                        <ion-icon name="heart-outline"></ion-icon>
-                        <ion-icon name="chatbubble-outline"></ion-icon>
+                        <ion-icon onClick={() => like()} class={isLiked ? "liked" : "" }  name={isLiked ? "heart" : "heart-outline"}></ion-icon>
+                        <ion-icon name="chatbubble-outline" ></ion-icon>
                         <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
                     <div>
-                        <ion-icon name="bookmark-outline"></ion-icon>
+                        <ion-icon onClick={() => setIsBookmarked(!isBookmarked)} name={isBookmarked ? "bookmark" : "bookmark-outline"}></ion-icon>
                     </div>
                 </div>
 

@@ -180,6 +180,31 @@ body {
   width: 100%;
 }
 
+.conteudo {
+  position: relative
+}
+
+@keyframes myAnimation {
+  0% { opacity: 100%;  transform: scale(0.2); }
+  60% { transform: scale(1.2);}
+  80% { transform: scale(1); opacity: 100%}
+} 
+.animated-heart {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  color: white;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.heart-animation {
+  animation: myAnimation 0.5s ease 1; 
+}
+
+
 .post .fundo .acoes {
   display: flex;
   justify-content: space-between;
@@ -305,3 +330,6 @@ ion-icon {
   color: black;
 }
 
+.liked {
+  color: red !important; 
+}

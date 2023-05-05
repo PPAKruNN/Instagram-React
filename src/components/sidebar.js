@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 const sugestArr = [
     {username: "9gag", img: "assets/img/9gag.svg" },
     {username: "mewoed", img: "assets/img/mewoed.svg" },
@@ -20,14 +22,27 @@ export default function Sidebar() {
     ) 
 }
 
-function Usuario(props) {
+function Usuario() {
+    const [username, setUsername] = useState("undefined")
+    const [img, setImg] = useState("assets/img/barked.svg")
+    
+    function changeUsername() {
+        const name = prompt("Diga o seu nome: ");
+        if(name) return setUsername(name);
+    }
+    
+    function changeImage() {
+        const url = prompt("Diga a URL da imagem: ");
+        if(url) return setImg(url);
+    }
+
     return (
         <div class="usuario">
-          <img src={props.img ? props.img : "assets/img/barked.svg"} alt="User profile"/>
+          <img onClick={changeImage} src={img} alt="User profile"/>
           <div class="texto">
             <span>
-              <strong>{props.username ? props.username : "undefined"}</strong>
-              <ion-icon name="pencil"></ion-icon>
+              <strong>{username}</strong>
+              <ion-icon onClick={changeUsername} name="pencil"></ion-icon>
             </span>
           </div>
         </div>
